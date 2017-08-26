@@ -1,11 +1,17 @@
-var Color = function() {
+var ColorsBox = function() {
+    function e() {
+        this.id = "colors";
+    }
+    return e.prototype.Init = function() {
+        document.getElementById(this.id);
+    }, e;
+}(), Color = function() {
     function e(e) {
         this.parse(e);
     }
     return e.prototype.parse = function(r) {
-        if (void 0 === r || null == r || 0 == r.length) return this.ok = !1, this.value = r, 
-        this;
-        this.ok = e.hasNamedColor(r), this.value = e.getColor(r);
+        return void 0 === r || null == r || 0 == r.length ? (this.ok = !1, this.value = r, 
+        this) : (this.ok = e.hasNamedColor(r), this.value = e.getColor(r), this);
     }, e.getColor = function(r) {
         var o = ("" + r).toLowerCase();
         return e.hasNamedColor(o) ? e.namedColors[o] : r;
@@ -179,14 +185,14 @@ var ColorRandomizer = function() {
     }, e.prototype.PaintText = function() {
         for (var e = document.getElementById(this.textId), r = e.innerText; e.firstChild; ) e.removeChild(e.firstChild);
         for (var o = this.RandomColor(), F = 0; F < r.length; F++) {
-            for (var a = void 0; a == o; ) a = this.RandomColor();
-            o = a;
-            var l = r.charAt(F), n = document.createElement("span");
-            n.innerHTML = l, n.style.color = a, e.appendChild(n);
+            for (var l = void 0; l == o; ) l = this.RandomColor();
+            o = l;
+            var a = r.charAt(F), t = document.createElement("span");
+            t.innerHTML = a, t.style.color = l, e.appendChild(t);
         }
     }, e;
 }();
 
 window.onload = function() {
-    console.log("loaded"), new ColorRandomizer().Start();
+    console.log("loaded"), new ColorsBox().Init(), new ColorRandomizer().Start();
 };

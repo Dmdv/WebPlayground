@@ -1,3 +1,14 @@
+class ColorsBox {
+
+	readonly id = "colors";
+
+	Init() {
+
+		var box = document.getElementById(this.id);
+		//box.setCustomValidity('Required email address');
+	}
+}
+
 class Color {
 
 	ok : boolean;
@@ -17,6 +28,8 @@ class Color {
 
 		this.ok = Color.hasNamedColor(value);
 		this.value = Color.getColor(value);
+
+		return this;
 	}
 
 	static namedColors = {
@@ -58,7 +71,6 @@ class Color {
 		var lc = ('' + key).toLowerCase();
 		return Color.namedColors.hasOwnProperty(lc);
 	};
-
 }
 
 class ColorRandomizer {
@@ -72,7 +84,7 @@ class ColorRandomizer {
         //setInterval(() => { this.PaintText(); }, this.time);
     };
 
-    RandomColor(){
+    RandomColor(): string {
 
     	let items = this.colors.split(/[\s,;]+/);
 
@@ -97,7 +109,7 @@ class ColorRandomizer {
     	return color.value;
     };
 
-    PaintText(){
+    PaintText() {
 
         let about = document.getElementById(this.textId);
 
@@ -134,6 +146,9 @@ class ColorRandomizer {
 window.onload = () =>
 {
 	console.log("loaded");
+
+	var box = new ColorsBox();
+	box.Init();
 
     var obj = new ColorRandomizer();
     obj.Start();
