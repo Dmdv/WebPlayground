@@ -1,7 +1,7 @@
 "use strict";
 
-function showHello(e, r) {
-    document.getElementById(e).innerText = greet_1.sayHello(r), console.log($(e));
+function showHello(e, t) {
+    document.getElementById(e).innerText = greet_1.sayHello(t), $("textarea#text").val("This is typed from jquery");
 }
 
 Object.defineProperty(exports, "__esModule", {
