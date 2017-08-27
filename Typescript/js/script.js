@@ -184,8 +184,8 @@ var ColorRandomizer = function() {
         return o.value;
     }, e.prototype.PaintText = function() {
         for (var e = document.getElementById(this.textId), r = e.innerText; e.firstChild; ) e.removeChild(e.firstChild);
-        for (var o = this.RandomColor(), F = 0; F < r.length; F++) {
-            for (var l = void 0; l == o; ) l = this.RandomColor();
+        for (var o = "", F = 0; F < r.length; F++) {
+            for (var l = ""; l == o; ) l = this.RandomColor();
             o = l;
             var a = r.charAt(F), t = document.createElement("span");
             t.innerHTML = a, t.style.color = l, e.appendChild(t);

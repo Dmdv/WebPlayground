@@ -119,11 +119,11 @@ class ColorRandomizer {
         	about.removeChild(about.firstChild);
         }
 
-        var prevColor = this.RandomColor();
+        let prevColor : string = '';
 
         for (var i = 0; i < text.length; i++){
 
-        	let color : string;
+        	let color : string = '';
 
         	while (color == prevColor){
         		color = this.RandomColor();
