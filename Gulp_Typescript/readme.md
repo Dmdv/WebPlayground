@@ -18,5 +18,6 @@ If you can't find your package, look for it on [TypeSearch](http://microsoft.git
 
 If you still can't find it, check if it bundles its own typings. 
 This is usually provided in a "types" or "typings" field in the package.json, or just look for any ".d.ts" 
-files in the package and manually include them with a 
+files in the package and manually include them with a
+
 ```  /// <reference path="" /> ```
