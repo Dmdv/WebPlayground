@@ -7,8 +7,7 @@ This is the preferred method. This is only available for TypeScript 2.0+ users.
 ``` npm install --save-dev @types/node ```
 
 The types should then be automatically included by the compiler. 
-See more in the handbook. 
-[handbook](http://www.typescriptlang.org/docs/handbook/declaration-files/consumption.html)
+See more in [handbook](http://www.typescriptlang.org/docs/handbook/declaration-files/consumption.html)
 
 #### For example:
 
