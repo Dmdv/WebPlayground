@@ -1,11 +1,7 @@
 {
-    "files": [
-        "src/main.ts",
-        "src/greet.ts"
-    ],
     "compilerOptions": {
         "noImplicitAny": true,
-        "noEmitOnError": true,
+        "noEmitOnError": false,
         "module": "commonjs",
         "target": "es2015"
     },
