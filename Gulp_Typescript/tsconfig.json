@@ -5,6 +5,11 @@
     ],
     "compilerOptions": {
         "noImplicitAny": true,
+        "noEmitOnError": true,
+        "module": "commonjs",
         "target": "es2015"
-    }
+    },
+    "exclude": [
+    "node_modules"
+    ]
 }

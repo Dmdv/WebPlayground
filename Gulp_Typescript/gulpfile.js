@@ -1,5 +1,6 @@
 var gulp = require('gulp');
 var browserify = require('browserify');
+var tslint = require('gulp-tslint');
 var watchify = require("watchify");
 var gutil = require("gulp-util");
 var source = require('vinyl-source-stream');
@@ -11,7 +12,15 @@ var paths = {
     pages: ['src/*.html']
 };
 
-gulp.task('copyHtml', function () {
+gulp.task('lint-ts', function () {
+    return gulp.src('./src/*.ts')
+    .pipe(tslint({
+        formatter: "verbose"
+    }))
+    .pipe(tslint.report());
+});
+
+gulp.task('copyHtml', ['lint-ts'], function () {
     return gulp.src(paths.pages)
         .pipe(gulp.dest('dist'));
 });

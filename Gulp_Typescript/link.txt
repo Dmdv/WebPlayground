@@ -1,1 +1,2 @@
 https://www.typescriptlang.org/docs/handbook/gulp.html
+https://weblogs.asp.net/dwahlin/creating-a-typescript-workflow-with-gulp
