@@ -13,7 +13,7 @@ See more in [handbook](http://www.typescriptlang.org/docs/handbook/declaration-f
 
 ``` npm install --save @types/lodash ```
 
-For an NPM package "foo", typings for it will be at "@types/foo". 
+For an NPM package "foo", typings for it will be at "@types/foo".
 If you can't find your package, look for it on [TypeSearch](http://microsoft.github.io/TypeSearch).
 
 If you still can't find it, check if it bundles its own typings. 
