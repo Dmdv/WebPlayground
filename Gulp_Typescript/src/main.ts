@@ -2,8 +2,6 @@ import { Observable } from '@reactivex/rxjs';
 import * as $ from "jquery";
 import { sayHello } from "./greet";
 
-//import Rx = require('rx');
-
 function showHello(divName: string, name: string) {
     const elt = document.getElementById(divName);
     elt.innerText = sayHello(name);
@@ -17,12 +15,6 @@ function showHello(divName: string, name: string) {
 	   .subscribe();
 
     Observable.of(1,2,3).map(x => x + '!!!');
-
-/*    var seq1 = Observable.interval(500)
-		  .do(function (x) { console.log(x); })
-		  .subscribe(function (x) { console.log('Sum of the buffer is ' ); });
-
-		  */
 
 /*
     $("#text").toObservable('keyup')
