@@ -25,13 +25,13 @@ gulp.task('copyHtml', ['lint-ts'], function () {
         .pipe(gulp.dest('dist'));
 });
 
-var watchedBrowserify = watchify(browserify({
+var watchedBrowserify = /*watchify(*/browserify({
     basedir: '.',
     debug: true,
     entries: ['src/main.ts'],
     cache: {},
     packageCache: {}
-}).plugin(tsify));
+}).plugin(tsify)/*)*/;
 
 function bundle() {
     return watchedBrowserify

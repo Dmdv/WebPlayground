@@ -28,6 +28,8 @@
     "watchify": "^3.9.0"
   },
   "dependencies": {
-    "@types/jquery": "^3.2.12"
+    "@reactivex/rxjs": "^5.4.3",
+    "@types/jquery": "^3.2.12",
+    "@types/rx": "^4.1.1"
   }
 }
