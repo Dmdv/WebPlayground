@@ -1,15 +1,14 @@
 {
-    "files": [
-        "script.ts"
-    ],
-    "compilerOptions":
-    {
-        "outDir": "./js/",
+    "compilerOptions": {
+        "outDir": "./dist/js",
         "sourceMap": false,
         "noImplicitAny": true,
         "module": "commonjs",
-        "target": "es3",
+        "target": "es2015",
         "jsx": "react",
         "allowJs": true
-    }
+    },
+    "exclude": [
+    "node_modules"
+    ]
 }
