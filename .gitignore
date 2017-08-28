@@ -43,3 +43,5 @@ node_modules
 #Prepros generated files
 readme.html
 *_prepros*
+package-lock.json
+dist/
