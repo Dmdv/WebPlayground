@@ -26,3 +26,18 @@ files in the package and manually include them with a
 ```
 /// <reference path="" /> 
 ```
+## Rx
+
+```
+npm install @reactivex/rxjs
+```
+
+It's not necessary to install typings beacuse Rx 5 is already implemented in Typescript
+
+To import the entire core set of functionality:
+
+```
+import Rx from 'rxjs/Rx';
+
+Rx.Observable.of(1,2,3)
+```
