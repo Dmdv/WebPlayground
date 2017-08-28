@@ -1,5 +1,4 @@
 import { Observable } from '@reactivex/rxjs';
-//import Rx from 'rxjs/Rx';
 import * as $ from "jquery";
 import { sayHello } from "./greet";
 
