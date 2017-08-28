@@ -39,10 +39,8 @@ To import the entire core set of functionality:
 ```
 import { Observable } from '@reactivex/rxjs';
 
-Rx.Observable.of(1,2,3)
-```
+Observable.of(1,2,3)
 
-```
 var obs = Observable.interval(500)
 	   .do(i => console.log(i) )
 	   .subscribe();
