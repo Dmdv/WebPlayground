@@ -2,7 +2,7 @@
 
 This is the preferred method. This is only available for TypeScript 2.0+ users. 
 
-#### For example:
+#### First:
 
 ``` 
 npm install --save-dev @types/node 
