@@ -37,7 +37,13 @@ It's not necessary to install typings beacuse Rx 5 is already implemented in Typ
 To import the entire core set of functionality:
 
 ```
-import Rx from 'rxjs/Rx';
+import { Observable } from '@reactivex/rxjs';
 
 Rx.Observable.of(1,2,3)
+```
+
+```
+var obs = Observable.interval(500)
+	   .do(i => console.log(i) )
+	   .subscribe();
 ```
