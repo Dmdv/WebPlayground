@@ -21,25 +21,39 @@ class ColorsBox {
 		this.success.hide();
 
 		var needInvoke = true;
+		let timer : any;
 
-		this.edit.on('input', () => {
-
-			if (!needInvoke){
-				return;
-			}
-
-			needInvoke = false;
-
-			var timer = setTimeout(() => {
-
-				clearTimeout(timer);
-				timer = null;
-				needInvoke = true;
-
+		this.edit.on('keyup', () => {
+			clearTimeout(timer);
+			timer = setTimeout(() => {				
 				this.UpdateText();
-
 			}, this.timeout);
 		});
+
+		this.edit.on('keydown', () => {
+			clearTimeout(timer);
+		});
+
+		// throttling
+
+		// this.edit.on('input', () => {
+
+		// 	if (!needInvoke){
+		// 		return;
+		// 	}
+
+		// 	needInvoke = false;
+
+		// 	timer = setTimeout(() => {
+
+		// 		clearTimeout(timer);
+		// 		timer = null;
+		// 		needInvoke = true;
+
+		// 		this.UpdateText();
+
+		// 	}, this.timeout);
+		// });
 	}
 
 	get colors():string {
