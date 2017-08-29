@@ -1,17 +1,23 @@
 import * as $ from "jquery";
 
-// https://github.com/dfilatov/jquery-plugins/blob/master/src/jquery.debounce/jquery.debounce.js
-
 class ColorsBox {
 
-	readonly id = "#colors";
+	readonly timeout = 1000;
+	readonly warningId = "#warning";
+	readonly successId = "#success";
+	readonly textId = "#colors";
+
+	private edit = $(this.textId);
+	private warning = $(this.warningId);
+	private success = $(this.successId);
+
+	private colorText = new ColorRandomizer();
 
 	Init() {
 
-		var edit = $(this.id);
 		var needInvoke = true;
 
-		$(edit).on('input', () => {
+		$(this.edit).on('input', () => {
 
 			if (!needInvoke){
 				return;
@@ -21,14 +27,34 @@ class ColorsBox {
 
 			var timer = setTimeout(() => {
 
-				console.log(edit.val());
-
 				clearTimeout(timer);
 				timer = null;
 				needInvoke = true;
-				
-			}, 500);
+
+				console.log(this.colors)
+
+				this.showSuccess();
+
+			}, this.timeout);
 		});
+	}
+
+	get colors():string {
+        return this.edit.val().toString();
+    }
+
+	updateText(){
+		this.colorText.Paint(this.colors);
+	}
+
+	showWarning(msg:string) {
+		this.warning.fadeOut(2000, 'swing');
+		this.warning.fadeIn(2000, 'swing');
+	}
+
+	showSuccess() {
+		this.success.fadeOut(2000, 'swing');
+		this.success.fadeIn(2000, 'swing');
 	}
 }
 
@@ -108,7 +134,7 @@ class ColorRandomizer {
         setInterval(() => { this.PaintText(); }, this.time);
     };
 
-    Start(colors : string) {
+    Paint(colors : string) {
     	this.colors = colors;
         this.PaintText();
     };    
@@ -155,8 +181,8 @@ class ColorRandomizer {
 
     	while (!color.ok) {
 
-    		console.log("Invalid color, removing: " + color.value);
-
+			console.log("Invalid color, removing: " + color.value);
+			
 			var index = items.indexOf(item, 0);
 
 			if (index > -1) {
@@ -178,7 +204,4 @@ window.onload = () =>
 
 	var box = new ColorsBox();
 	box.Init();
-
-    var obj = new ColorRandomizer();
-    obj.Start("red,yellow;blue;red,lightseagreen");
 };
