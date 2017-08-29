@@ -31,7 +31,7 @@ class ColorsBox {
 				timer = null;
 				needInvoke = true;
 
-				this.updateText();
+				this.UpdateText();
 
 			}, this.timeout);
 		});
@@ -41,20 +41,38 @@ class ColorsBox {
         return this.edit.val().toString();
     }
 
-	updateText(){
+	private UpdateText() {
+
 		console.log(this.colors)
 		this.colorText.Paint(this.colors);
-		this.showSuccess();
+
+		let colors = this.colorText.Errors;
+
+		if (colors.length > 0) {
+			this.ShowWarning(colors.join(","));
+		}
+		else {
+			this.HideWarning();
+		}
+
+		this.ShowSuccess();
 	}
 
-	showWarning(msg:string) {
-		this.warning.fadeOut(2000, 'swing');
-		this.warning.fadeIn(2000, 'swing');
+	private HideWarning() {
+		this.warning.fadeOut(this.timeout, 'swing');
 	}
 
-	showSuccess() {
-		this.success.fadeOut(2000, 'swing');
-		this.success.fadeIn(2000, 'swing');
+	private ShowWarning(color:string) {
+		let str = 
+		"<strong>Warning!</strong> The color you've entered: '" + color + 
+		"' doesn't exist. Ignoring..."
+		this.warning.html(str);
+		this.warning.fadeIn(this.timeout, 'swing');
+	}
+
+	private ShowSuccess() {
+		this.success.fadeIn(this.timeout, 'swing');
+		this.success.fadeOut(this.timeout, 'swing');
 	}
 }
 
@@ -128,6 +146,11 @@ class ColorRandomizer {
 	
 	private colors : string;
 	private colorArray : Array<string>;
+	private errorsArray : Array<string>;
+
+	get Errors() : Array<string> {
+		return this.errorsArray;
+	}
 
     Paint(colors : string) {
 		this.colors = colors;
@@ -137,6 +160,7 @@ class ColorRandomizer {
 	
 	InitColors() {
 
+		this.errorsArray = new Array<string>();
 		let array = this.colors.split(/[\s,;]+/);
 		
 		this.colorArray = array.filter(str => {
@@ -145,6 +169,8 @@ class ColorRandomizer {
 				return color.value;
 			}
 			else {
+				
+				this.errorsArray.push(color.value);
 				console.log('Invaid color: ' + color.value);
 			}
 		});
