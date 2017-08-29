@@ -17,15 +17,28 @@
             <h1>Painting text</h1>
             <small>Sample demo</small>
         </div>
-        <!-- Success -->
-        <div class="alert alert-info alert-dismissible" role="alert">
+        <!-- Tip -->
+        <div id="tip" class="alert alert-info alert-dismissible" role="alert">
             <strong>!Tip:</strong> Just start typing in colors to see an updated text
         </div>
+
+        <!-- Success -->
+        <div id="success" class="alert alert-success alert-dismissible" role="alert">
+            <strong>Well done!</strong> You've successfully changed colors
+        </div>
+
         <!-- Colors -->
         <div class="form-group">
             <textarea class="form-control colors" id="colors" cols="40" rows="3" placeholder="Please, enter a valid list of colors, comma or semicolon separated"></textarea>
         </div>
         <br>
+
+        <!-- Warning -->
+        <div id="warning" class="alert alert-warning alert-dismissible" role="alert">
+            <strong>Warning!</strong> The color you've entered doesn't exist. Ignoring...
+        </div>
+
+        <!-- Text -->
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Colored text</h3>
@@ -38,15 +51,6 @@
                     earum vel, accusantium excepturi possimus at dolorem odio. Error atque temporibus, ducimus iure dicta deleniti in quidem provident nobis officia sed.</p>
             </div>
         </div>
-        <!-- Success -->
-        <div id="success" class="alert alert-success alert-dismissible collapse" role="alert">
-            <strong>Well done!</strong> You've successfully changed colors
-        </div>
-        <!-- Warning -->
-        <div id="warning" class="alert alert-warning alert-dismissible collapse" role="alert">
-            <strong>Warning!</strong> The color you've entered doesn't exist. Ignoring...
-        </div>
-
     </div>
 </body>
 

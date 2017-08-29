@@ -6,14 +6,19 @@ class ColorsBox {
 	readonly warningId = "#warning";
 	readonly successId = "#success";
 	readonly textId = "#colors";
+	readonly tipId = "#tip";
 
 	private edit = $(this.textId);
 	private warning = $(this.warningId);
 	private success = $(this.successId);
+	private tip = $(this.tipId);
 
 	private colorText = new ColorRandomizer();
 
 	Init() {
+
+		this.warning.hide();
+		this.success.hide();
 
 		var needInvoke = true;
 
@@ -38,41 +43,60 @@ class ColorsBox {
 	}
 
 	get colors():string {
-        return this.edit.val().toString();
+
+		let value = this.edit.val().toString();
+		if (value === ''){
+			value = 'black';
+		}
+        return value;
     }
 
 	private UpdateText() {
 
-		console.log(this.colors)
+		console.log(this.colors);
+
 		this.colorText.Paint(this.colors);
 
 		let colors = this.colorText.Errors;
 
 		if (colors.length > 0) {
 			this.ShowWarning(colors.join(","));
+			
 		}
 		else {
 			this.HideWarning();
 		}
 
-		this.ShowSuccess();
+		//this.ShowSuccess();
 	}
 
 	private HideWarning() {
 		this.warning.fadeOut(this.timeout, 'swing');
+		this.edit.toggleClass('alert-warning', false);
 	}
 
 	private ShowWarning(color:string) {
-		let str = 
+		let str =
 		"<strong>Warning!</strong> The color you've entered: '" + color + 
 		"' doesn't exist. Ignoring..."
 		this.warning.html(str);
 		this.warning.fadeIn(this.timeout, 'swing');
+		this.edit.toggleClass('alert-warning', true);
 	}
 
 	private ShowSuccess() {
+		this.tip.hide();
 		this.success.fadeIn(this.timeout, 'swing');
-		this.success.fadeOut(this.timeout, 'swing');
+		this.success.fadeOut(this.timeout, 'swing', () => {this.Tip(true)});
+	}
+
+	private Tip(show:boolean) {
+		if (show) {
+			this.tip.fadeIn(this.timeout, 'swing');
+		}
+		else {
+			this.tip.fadeOut(this.timeout + 500, 'swing');
+		}
 	}
 }
 
@@ -162,14 +186,18 @@ class ColorRandomizer {
 
 		this.errorsArray = new Array<string>();
 		let array = this.colors.split(/[\s,;]+/);
+
+		array = array
+			.filter(x => x !== '')
+			.filter(x => x.trim());
 		
 		this.colorArray = array.filter(str => {
+
 			let color : Color = new Color(str);
 			if (color.ok) {
 				return color.value;
 			}
-			else {
-				
+			else {			
 				this.errorsArray.push(color.value);
 				console.log('Invaid color: ' + color.value);
 			}
