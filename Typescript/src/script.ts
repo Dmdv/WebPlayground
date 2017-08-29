@@ -17,7 +17,7 @@ class ColorsBox {
 
 		var needInvoke = true;
 
-		$(this.edit).on('input', () => {
+		this.edit.on('input', () => {
 
 			if (!needInvoke){
 				return;
@@ -31,9 +31,7 @@ class ColorsBox {
 				timer = null;
 				needInvoke = true;
 
-				console.log(this.colors)
-
-				this.showSuccess();
+				this.updateText();
 
 			}, this.timeout);
 		});
@@ -44,7 +42,9 @@ class ColorsBox {
     }
 
 	updateText(){
+		console.log(this.colors)
 		this.colorText.Paint(this.colors);
+		this.showSuccess();
 	}
 
 	showWarning(msg:string) {
@@ -124,20 +124,31 @@ class Color {
 
 class ColorRandomizer {
 
-	readonly time = 1000;
-	readonly textId = "about";
+	private readonly textId = "about";
 	
-	colors : string;
-
-    StartAnimation(colors : string) {
-    	this.colors = colors;
-        setInterval(() => { this.PaintText(); }, this.time);
-    };
+	private colors : string;
+	private colorArray : Array<string>;
 
     Paint(colors : string) {
-    	this.colors = colors;
+		this.colors = colors;
+		this.InitColors();
         this.PaintText();
-    };    
+	};
+	
+	InitColors() {
+
+		let array = this.colors.split(/[\s,;]+/);
+		
+		this.colorArray = array.filter(str => {
+			let color : Color = new Color(str);
+			if (color.ok) {
+				return color.value;
+			}
+			else {
+				console.log('Invaid color: ' + color.value);
+			}
+		});
+	}
 
     PaintText() {
 
@@ -172,28 +183,7 @@ class ColorRandomizer {
     }
 
     RandomColor(): string {
-
-    	let items = this.colors.split(/[\s,;]+/);
-
-    	var item = items[Math.floor(Math.random() * items.length)];
-
-    	let color : Color = new Color(item);
-
-    	while (!color.ok) {
-
-			console.log("Invalid color, removing: " + color.value);
-			
-			var index = items.indexOf(item, 0);
-
-			if (index > -1) {
-			   items.splice(index, 1);
-			}
-
-    		item = items[Math.floor(Math.random() * items.length)];
-    		color = new Color(item);
-    	}
-
-    	return color.value;
+		return this.colorArray[Math.floor(Math.random() * this.colorArray.length)];
     };
 }
 
