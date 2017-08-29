@@ -1,11 +1,34 @@
+import * as $ from "jquery";
+
+// https://github.com/dfilatov/jquery-plugins/blob/master/src/jquery.debounce/jquery.debounce.js
+
 class ColorsBox {
 
-	readonly id = "colors";
+	readonly id = "#colors";
 
 	Init() {
 
-		var box = document.getElementById(this.id);
-		//box.setCustomValidity('Required email address');
+		var edit = $(this.id);
+		var needInvoke = true;
+
+		$(edit).on('input', () => {
+
+			if (!needInvoke){
+				return;
+			}
+
+			needInvoke = false;
+
+			var timer = setTimeout(() => {
+
+				console.log(edit.val());
+
+				clearTimeout(timer);
+				timer = null;
+				needInvoke = true;
+				
+			}, 500);
+		});
 	}
 }
 
@@ -77,37 +100,18 @@ class ColorRandomizer {
 
 	readonly time = 1000;
 	readonly textId = "about";
-	readonly colors = "red,yellow;blue;red,lightseagreen";
+	
+	colors : string;
 
-    Start() {
-    	this.PaintText();
-        //setInterval(() => { this.PaintText(); }, this.time);
+    StartAnimation(colors : string) {
+    	this.colors = colors;
+        setInterval(() => { this.PaintText(); }, this.time);
     };
 
-    RandomColor(): string {
-
-    	let items = this.colors.split(/[\s,;]+/);
-
-    	var item = items[Math.floor(Math.random() * items.length)];
-
-    	let color : Color = new Color(item);
-
-    	while (!color.ok) {
-
-    		console.log("Invalid, removing: " + color.value);
-
-			var index = items.indexOf(item, 0);
-
-			if (index > -1) {
-			   items.splice(index, 1);
-			}
-
-    		item = items[Math.floor(Math.random() * items.length)];
-    		color = new Color(item);
-    	}
-
-    	return color.value;
-    };
+    Start(colors : string) {
+    	this.colors = colors;
+        this.PaintText();
+    };    
 
     PaintText() {
 
@@ -140,6 +144,31 @@ class ColorRandomizer {
         	about.appendChild(el);
         }
     }
+
+    RandomColor(): string {
+
+    	let items = this.colors.split(/[\s,;]+/);
+
+    	var item = items[Math.floor(Math.random() * items.length)];
+
+    	let color : Color = new Color(item);
+
+    	while (!color.ok) {
+
+    		console.log("Invalid color, removing: " + color.value);
+
+			var index = items.indexOf(item, 0);
+
+			if (index > -1) {
+			   items.splice(index, 1);
+			}
+
+    		item = items[Math.floor(Math.random() * items.length)];
+    		color = new Color(item);
+    	}
+
+    	return color.value;
+    };
 }
 
 
@@ -151,5 +180,5 @@ window.onload = () =>
 	box.Init();
 
     var obj = new ColorRandomizer();
-    obj.Start();
+    obj.Start("red,yellow;blue;red,lightseagreen");
 };
