@@ -1,0 +1,11 @@
+https://www.typescriptlang.org/docs/handbook/gulp.html
+https://weblogs.asp.net/dwahlin/creating-a-typescript-workflow-with-gulp
+https://microsoft.github.io/TypeSearch/ -  поиск пакетов
+https://github.com/DefinitelyTyped/DefinitelyTyped
+http://www.vrdmn.com/2016/07/getting-started-with-typescript.html
+https://www.typescriptlang.org/docs/handbook/migrating-from-javascript.html
+
+https://medium.com/@jontorrado/working-with-gulp-2-19376bfdd077
+https://semaphoreci.com/community/tutorials/getting-started-with-gulp-js
+https://medium.com/@jontorrado/working-with-gulp-step-by-step-e0d5fe2d2f23
+https://css-tricks.com/gulp-for-beginners
